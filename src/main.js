@@ -1,6 +1,6 @@
-import { getProductPage } from './tests/pdp.js';
 import { generateReport } from './utils/report.js';
 import { options } from './config/options.js';
+import { rampingVus, constantArrivalRate } from './tests/arquivoDeTeste.js';
 
 export { options };
 
@@ -13,14 +13,6 @@ export default function testGetProductPage() {
     } else {
         return constantArrivalRate();
     }
-}
-
-export function rampingVus() {
-    return getProductPage();
-}
-
-export function constantArrivalRate() {
-    return getProductPage();
 }
 
 // Função para gerar o relatório

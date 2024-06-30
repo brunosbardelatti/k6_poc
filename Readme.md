@@ -30,7 +30,9 @@ K6_POC/
 │   └── main.js                 # Script principal de execução dos testes
 ├── Docker-compose.yml          # Configuração do Docker Compose
 ├── Dockerfile                  # Dockerfile para criar a imagem do K6
+├── LICENSE                     # Arquivo de licença
 ├── package.json                # Configuração do npm
+├── README.md                   # Arquivo de README
 ├── run_docker_k6.sh            # Script para executar testes com Docker
 └── run_docker-compose_k6_grafana.sh  # Script para executar testes com Docker Compose e Grafana
 ```
@@ -43,7 +45,7 @@ K6_POC/
 ## Instalação
 1. Clone o repositório:
    ```sh
-   git clone <URL do Repositório>
+   git clone git@github.com:brunosbardelatti/k6_poc.git
    cd K6_POC
    ```
 
@@ -60,8 +62,10 @@ Para executar os testes utilizando Docker, execute o script `run_docker_k6.sh`:
 ```sh
 ./run_docker_k6.sh [TIPO_DE_TESTE]
 ```
+Onde TIPO_DE_TESTE é um parâmetro opcional que define o tipo de teste a ser executado. Os tipos disponíveis são:
 
-Onde `TIPO_DE_TESTE` é um parâmetro opcional que define o tipo de teste a ser executado (por padrão, é `rampingVus`).
+- rampingVus: Realiza um teste de carga onde o número de usuários virtuais (VUs) aumenta gradualmente.
+- constantVus: Realiza um teste de carga onde o número de usuários virtuais (VUs) permanece constante ao longo do teste.
 
 ### Usando Docker Compose com Grafana
 Para executar os testes utilizando Docker Compose e visualizar os resultados no Grafana, execute o script `run_docker-compose_k6_grafana.sh`:
@@ -69,11 +73,22 @@ Para executar os testes utilizando Docker Compose e visualizar os resultados no 
 ```sh
 ./run_docker-compose_k6_grafana.sh [TIPO_DE_TESTE]
 ```
+Onde TIPO_DE_TESTE é um parâmetro opcional que define o tipo de teste a ser executado. Os tipos disponíveis são:
+
+- rampingVus: Realiza um teste de carga onde o número de usuários virtuais (VUs) aumenta gradualmente.
+- constantVus: Realiza um teste de carga onde o número de usuários virtuais (VUs) permanece constante ao longo do teste.
 
 Após a execução, acesse o dashboard do Grafana em `http://localhost:3000/d/k6/k6-load-testing-results`.
 
 ## Relatórios
-Os relatórios de teste serão gerados no diretório `reports`. Em caso de erros durante a execução dos testes, verifique o arquivo de log `k6_error.log` no mesmo diretório.
+Os relatórios de teste serão gerados no diretório `reports`. Os tipos de arquivos gerados incluem:
+
+- `index_${timestamp}.html`: Relatório em formato HTML, contendo uma visão detalhada dos testes.
+- `summary_${timestamp}.txt`: Resumo em formato de texto simples.
+- `summary_${timestamp}.json`: Relatório em formato JSON para fácil integração com outras ferramentas.
+- `summary_${timestamp}.csv`: Relatório em formato CSV para análise em ferramentas de planilhas.
+
+Cada arquivo de relatório terá um `timestamp` no final do nome para facilitar a localização em caso de múltiplas execuções. O `timestamp` ajuda a distinguir entre diferentes execuções dos testes. Em caso de erros durante a execução dos testes, verifique o arquivo de log `k6_error.log` que será gerado no mesmo diretório.
 
 ## Contribuindo
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
@@ -83,45 +98,3 @@ Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICEN
 
 ## Autor
 Bruno Sbardelatti
-
-
-
-
-To do 
-
-separa o contexto do if presente na Main
-testar o grafana
-implementar segundo teste(home)
-
-revisar o Readme.md
-
-
-
-K6_POC/
-├── reports/ (será criado automaticamente após a execução)
-├── src
-│ ├── config
-│ │ └── options.js
-│ ├── dashboards
-│ │ └── k6-load-testing-results_rev3.json
-│ ├── data_test
-│ │ └── dados.csv
-│ ├── grafana
-│ │ └── grafana-dashboard
-│ │ | └── grafana-dashboard.yaml
-│ │ └── grafana-datasource
-│ │ | └── grafana-datasource.yaml
-│ ├── tests
-│ │ ├── arquivoDeTeste.js
-│ │ ├── arquivoDeTestePost.js
-│ ├── utils
-│ │ ├── config.js
-│ │ └── report.js
-│ └── main.js
-├── Docker-compose.yml
-├── Dockerfile
-├── package.json
-├── run_docker_k6.sh
-└── run_docker-compose_k6_grafana.sh
-
-

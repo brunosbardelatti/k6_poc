@@ -1,0 +1,21 @@
+  {
+    "name": "k6-tests",
+    "version": "1.1.0",
+    "description": "Projeto de testes de carga usando K6",
+    "main": "src/main.js",
+    "scripts": {
+      "test": "k6 run src/main.js",
+      "lint": "eslint src/**/*.js",
+      "format": "prettier --write src/**/*.js"
+    },
+    "dependencies": {
+      "k6-reporter": "github:benc-uk/k6-reporter"
+    },
+    "devDependencies": {
+      "@types/k6": "^0.35.0",
+      "eslint": "^7.32.0",
+      "prettier": "^2.3.2"
+    },
+    "author": "Bruno Sbardelatti",
+    "license": "MIT"
+  }
